@@ -17,8 +17,7 @@ export const metadata: Metadata = {
     default: "となりの履歴書",
     template: "%s | となりの履歴書",
   },
-  description:
-    "これは、あなたの経歴をもとに、もしもの履歴書を生成するアプリです。",
+  description: "これは、あなたの経歴をもとに、もしもの履歴書を生成するアプリです。",
 };
 
 export default function RootLayout({
@@ -28,11 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

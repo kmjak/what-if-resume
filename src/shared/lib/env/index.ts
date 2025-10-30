@@ -1,0 +1,1 @@
+export { geminiApiKey } from "./server";

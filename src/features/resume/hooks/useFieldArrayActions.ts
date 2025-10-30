@@ -76,7 +76,8 @@ function useHobbyActions({ append, remove }: UseHobbyActionsProps): ReturnAction
   return { handleAdd, handleRemove };
 }
 
-/** * Certification用のアクション
+/**
+ * Certification用のアクション
  * @param {object} props - 引数オブジェクト
  * @param {function} props.append - フィールド配列に要素を追加する関数
  * @param {function} props.remove - フィールド配列から要素を削除する関数
@@ -97,7 +98,8 @@ function useCertificationActions({ append, remove }: UseCertificationActionsProp
   return { handleAdd, handleRemove };
 }
 
-/** * Language用のアクション
+/**
+ * Language用のアクション
  * @param {object} props - 引数オブジェクト
  * @param {function} props.append - フィールド配列に要素を追加する関数
  * @param {function} props.remove - フィールド配列から要素を削除する関数

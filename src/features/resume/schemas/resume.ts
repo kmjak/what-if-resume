@@ -21,7 +21,7 @@ const certificationSchema = z.object({
 
 const languageSchema = z.object({
   name: z.string().min(1, "言語名は必須です"),
-  proficiency: z.enum(proficiencyLevels, {
+  proficiency: z.enum(Object.values(proficiencyLevels) as [string, ...string[]], {
     message: "習熟度を選択してください",
   }),
 });

@@ -1,3 +1,6 @@
+import { memo } from "react";
+import type { Control } from "react-hook-form";
+
 import type { Resume } from "@/features/resume/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/shadcn/components/ui/card";
 import {
@@ -9,8 +12,6 @@ import {
   FormMessage,
 } from "@/shared/shadcn/components/ui/form";
 import { Textarea } from "@/shared/shadcn/components/ui/textarea";
-import { memo } from "react";
-import type { Control } from "react-hook-form";
 
 type SelfAnalysisFormSectionProps = {
   control: Control<Resume>;

@@ -1,3 +1,8 @@
+import { memo } from "react";
+import type { Control } from "react-hook-form";
+
+import { Trash2 } from "lucide-react";
+
 import type { Resume } from "@/features/resume/types";
 import { Button } from "@/shared/shadcn/components/ui/button";
 import {
@@ -10,9 +15,6 @@ import {
 } from "@/shared/shadcn/components/ui/form";
 import { Input } from "@/shared/shadcn/components/ui/input";
 import { Textarea } from "@/shared/shadcn/components/ui/textarea";
-import { Trash2 } from "lucide-react";
-import { memo } from "react";
-import type { Control } from "react-hook-form";
 
 type CareerFormCardProps = {
   control: Control<Resume>;

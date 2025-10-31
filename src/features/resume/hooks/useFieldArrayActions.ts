@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import {
   createDefaultCareer,
   createDefaultCertification,
@@ -5,7 +7,6 @@ import {
   createDefaultLanguage,
 } from "@/features/resume/constants";
 import { Career, Certification, Hobby, Language } from "@/features/resume/types/Resume";
-import { useCallback } from "react";
 
 type UseCareerActionsProps = {
   append: (value: Career) => void;

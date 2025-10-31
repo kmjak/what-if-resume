@@ -1,18 +1,39 @@
 "use client";
 
+import { useState } from "react";
+import type { UseFieldArrayReturn } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { createPersonalHistory } from "@/features/personal/usecases";
 import { createDefaultValues } from "@/features/resume/constants";
 import { resumeSchema } from "@/features/resume/schemas";
 import type { Resume } from "@/features/resume/types";
 import { errorMessage } from "@/shared/utils/error";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+
+type UseResumeFormReturn = {
+  form: ReturnType<typeof useForm<Resume>>;
+  fieldArrays: {
+    careerArray: UseFieldArrayReturn<Resume, "careers">;
+    hobbyArray: UseFieldArrayReturn<Resume, "hobbies">;
+    certArray: UseFieldArrayReturn<Resume, "certifications">;
+    langArray: UseFieldArrayReturn<Resume, "languages">;
+  };
+  handlers: {
+    handleSubmit: (data: Resume) => Promise<void>;
+    handleReset: () => void;
+  };
+  state: {
+    isLoading: boolean;
+  };
+  error: string | null;
+};
 
 /**
  * 履歴書フォームのカスタムフック
  */
-export function useResumeForm() {
+export function useResumeForm(): UseResumeFormReturn {
   const [error, setError] = useState<string | null>(null);
   const defaultValues = createDefaultValues();
 

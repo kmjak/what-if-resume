@@ -1,5 +1,6 @@
-import { errorMessage } from "@/shared/utils/error";
 import { z } from "zod";
+
+import { errorMessage } from "@/shared/utils/error";
 
 type CustomFetchProps<T> = {
   schemas: z.ZodType<T>;

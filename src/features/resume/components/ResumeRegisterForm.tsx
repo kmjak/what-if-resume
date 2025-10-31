@@ -1,5 +1,7 @@
 "use client";
 
+import { ReactElement } from "react";
+
 import { useResumeForm } from "@/features/resume/hooks";
 import { Button } from "@/shared/shadcn/components/ui/button";
 import { Form } from "@/shared/shadcn/components/ui/form";
@@ -10,7 +12,7 @@ import HobbyFormSection from "./HobbyFormSection";
 import LanguageFormSection from "./LanguageFormSection";
 import SelfAnalysisFormSection from "./SelfAnalysisFormSection";
 
-function ResumeRegisterForm() {
+function ResumeRegisterForm(): ReactElement {
   const {
     form,
     fieldArrays: { careerArray, hobbyArray, certArray, langArray },

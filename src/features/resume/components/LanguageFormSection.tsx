@@ -1,10 +1,13 @@
+import { memo } from "react";
+import type { Control, UseFieldArrayReturn } from "react-hook-form";
+
+import { Plus } from "lucide-react";
+
 import { useLanguageActions } from "@/features/resume/hooks";
 import type { Resume } from "@/features/resume/types";
 import { Button } from "@/shared/shadcn/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/shadcn/components/ui/card";
-import { Plus } from "lucide-react";
-import { memo } from "react";
-import type { Control, UseFieldArrayReturn } from "react-hook-form";
+
 import LanguageFormCard from "./LanguageFormCard";
 
 type LanguageFormSectionProps = {

@@ -3,11 +3,11 @@
 import * as React from "react";
 import {
   Controller,
-  FieldError,
   FormProvider,
   useFormContext,
   useFormState,
   type ControllerProps,
+  type FieldError,
   type FieldPath,
   type FieldValues,
 } from "react-hook-form";

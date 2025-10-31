@@ -1,4 +1,5 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import importPlugin from "eslint-plugin-import";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -20,20 +21,31 @@ const eslintConfig = [
   ),
 
   {
-    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "src/generated/**",
+    ],
   },
 
   {
     files: ["**/*.{ts,tsx}"],
+    plugins: {
+      import: importPlugin,
+    },
     rules: {
-      "react-hooks/exhaustive-deps": "off",
       "react/react-in-jsx-scope": "off",
       "prettier/prettier": "error",
+      "@typescript-eslint/explicit-function-return-type": ["error"],
+      "@typescript-eslint/no-explicit-any": ["error"],
       "@typescript-eslint/naming-convention": [
         "error",
         {
           selector: "variable",
-          format: ["camelCase"],
+          format: ["camelCase", "PascalCase"],
         },
         {
           selector: "parameter",
@@ -44,43 +56,28 @@ const eslintConfig = [
           format: ["PascalCase"],
         },
       ],
-    },
-  },
-
-  {
-    files: ["**/*.ts"],
-    rules: {
-      "@typescript-eslint/naming-convention": [
+      "import/order": [
         "error",
         {
-          selector: "function",
-          format: ["camelCase"],
-        },
-      ],
-    },
-  },
-
-  {
-    files: ["**/app/api/**/*.ts"],
-    rules: {
-      "@typescript-eslint/naming-convention": [
-        "error",
-        {
-          selector: "function",
-          format: ["UPPER_CASE"],
-        },
-      ],
-    },
-  },
-
-  {
-    files: ["**/*.tsx"],
-    rules: {
-      "@typescript-eslint/naming-convention": [
-        "error",
-        {
-          selector: "function",
-          format: ["PascalCase"],
+          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+          pathGroups: [
+            {
+              pattern: "react**",
+              group: "builtin",
+              position: "before",
+            },
+            {
+              pattern: "@/service/**",
+              group: "internal",
+              position: "after",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["react"],
         },
       ],
     },

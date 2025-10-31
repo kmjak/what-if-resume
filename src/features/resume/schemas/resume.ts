@@ -1,5 +1,6 @@
-import { proficiencyLevels } from "@/features/resume/constants";
 import { z } from "zod";
+
+import { proficiencyLevels } from "@/features/resume/constants";
 
 const careerSchema = z.object({
   title: z.string().min(1, "職歴・経歴名は必須です"),

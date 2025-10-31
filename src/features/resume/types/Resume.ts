@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import {
   careerSchema,
   certificationSchema,
@@ -7,7 +9,6 @@ import {
   strengthSchema,
   weaknessesSchema,
 } from "@/features/resume/schemas";
-import { z } from "zod";
 
 type Resume = z.infer<typeof resumeSchema>;
 type Career = z.infer<typeof careerSchema>;

@@ -1,10 +1,11 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { personalHistorySchema } from "@/features/personal/schemas";
 import { whatIfPrompt } from "@/features/resume/prompts";
 import { resumeSchema } from "@/features/resume/schemas";
 import { apiResponse } from "@/shared/constants/api";
 import { generateGeminiResponse } from "@/shared/services/gemini/";
 import { errorMessage } from "@/shared/utils/error";
-import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   let resume;

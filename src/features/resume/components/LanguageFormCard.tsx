@@ -1,3 +1,8 @@
+import { memo } from "react";
+import type { Control } from "react-hook-form";
+
+import { Trash2 } from "lucide-react";
+
 import { proficiencyLevelsJapanese } from "@/features/resume/constants";
 import type { Resume } from "@/features/resume/types";
 import { Button } from "@/shared/shadcn/components/ui/button";
@@ -16,9 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/shadcn/components/ui/select";
-import { Trash2 } from "lucide-react";
-import { memo } from "react";
-import type { Control } from "react-hook-form";
 
 type LanguageFormCardProps = {
   control: Control<Resume>;

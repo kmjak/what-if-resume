@@ -5,6 +5,7 @@ import type { UseFieldArrayReturn } from "react-hook-form";
 import { useFieldArray, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 import { createPersonalHistory } from "@/features/personal/usecases";
 import { createDefaultValues } from "@/features/resume/constants";
@@ -36,6 +37,7 @@ type UseResumeFormReturn = {
 export function useResumeForm(): UseResumeFormReturn {
   const [error, setError] = useState<string | null>(null);
   const defaultValues = createDefaultValues();
+  const router = useRouter();
 
   const form = useForm<Resume>({
     resolver: zodResolver(resumeSchema),
@@ -72,7 +74,8 @@ export function useResumeForm(): UseResumeFormReturn {
     setError(null);
     try {
       const result = await createPersonalHistory({ data });
-      // ! TODO: ローカルストレージへの保存は一時的な対応
+      router.push(`/what-if/`);
+      // TODO: ローカルストレージへの保存は一時的な対応
       try {
         window.localStorage.setItem("data", JSON.stringify(result));
       } catch (storageError) {

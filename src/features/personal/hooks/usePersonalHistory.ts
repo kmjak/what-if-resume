@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { toast } from "sonner";
+
 import { fetchPersonalHistory } from "@/features/personal/services";
 import type { PersonalHistory } from "@/features/personal/types";
 import { errorMessage } from "@/shared/utils/error";
@@ -33,6 +35,7 @@ export function usePersonalHistory(): UsePersonalHistoryReturn {
     } catch (err) {
       errorMessage({ title: "個人史データの取得に失敗しました。", error: err });
       setError("個人史データの取得に失敗しました。");
+      toast.error("個人史データの取得に失敗しました。");
     } finally {
       setIsLoading(false);
     }

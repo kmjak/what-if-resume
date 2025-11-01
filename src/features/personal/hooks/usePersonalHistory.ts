@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { fetchPersonalHistory } from "@/features/personal/services";
 import type { PersonalHistory } from "@/features/personal/types";
@@ -22,7 +22,7 @@ export function usePersonalHistory(): UsePersonalHistoryReturn {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchHistory = async (): Promise<void> => {
+  const fetchHistory = useCallback(async (): Promise<void> => {
     setIsLoading(true);
     setError(null);
 
@@ -36,12 +36,12 @@ export function usePersonalHistory(): UsePersonalHistoryReturn {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   // TODO: ローカルストレージを使っているのでuseEffect内で取得しているが、将来的にはサーバーで取得する
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [fetchHistory]);
 
   return {
     history,

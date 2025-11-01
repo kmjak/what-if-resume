@@ -6,6 +6,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { createPersonalHistory } from "@/features/personal/usecases";
 import { createDefaultValues } from "@/features/resume/constants";
@@ -71,6 +72,8 @@ export function useResumeForm(): UseResumeFormReturn {
    * @param data - 送信する履歴書データ
    */
   const handleSubmit = async (data: Resume): Promise<void> => {
+    // 既存のtoastを全て削除
+    toast.dismiss();
     setError(null);
     try {
       const result = await createPersonalHistory({ data });
@@ -78,12 +81,14 @@ export function useResumeForm(): UseResumeFormReturn {
       // TODO: ローカルストレージへの保存は一時的な対応
       try {
         window.localStorage.setItem("data", JSON.stringify(result));
+        toast.success("履歴書データが正常に送信されました。");
       } catch (storageError) {
         throw new Error("ローカルストレージの設定に失敗しました。", { cause: storageError });
       }
     } catch (error) {
       errorMessage({ title: "履歴書データの送信中にエラーが発生しました。", error });
       setError("履歴書データの送信中にエラーが発生しました。");
+      toast.error("履歴書データの送信中にエラーが発生しました。");
     }
   };
 

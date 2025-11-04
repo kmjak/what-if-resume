@@ -10,7 +10,7 @@ import MobileNav from "./MobileNav";
 
 function Header(): ReactElement {
   // TODO: 認証状態に応じて変更する
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

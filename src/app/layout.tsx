@@ -39,7 +39,7 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en">
+      <html lang="ja">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <Header />
           <main className="flex-1 py-4 md:py-8 px-6 mx-auto">{children}</main>

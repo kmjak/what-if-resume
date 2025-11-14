@@ -69,11 +69,11 @@ function MobileNav(): ReactElement {
                 <div className="flex flex-col gap-2">
                   <SignInButton mode="modal">
                     <Button variant="outline" className="w-full h-12 rounded-full">
-                      Sign In
+                      ログイン
                     </Button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <Button className="w-full h-12 rounded-full">Sign Up</Button>
+                    <Button className="w-full h-12 rounded-full">新規登録</Button>
                   </SignUpButton>
                 </div>
               </SignedOut>

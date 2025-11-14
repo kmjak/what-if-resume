@@ -4,6 +4,8 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@cl
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
+import { Button } from "@/shared/shadcn/components/ui/button";
+
 import DefaultNav from "./DefaultNav";
 import MobileNav from "./MobileNav";
 
@@ -33,14 +35,14 @@ function Header(): ReactElement {
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors">
-                Sign In
-              </button>
+              <Button className="text-black border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors">
+                ログイン
+              </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors shadow-sm">
-                Sign Up
-              </button>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors shadow-sm">
+                新規登録
+              </Button>
             </SignUpButton>
           </SignedOut>
         </div>

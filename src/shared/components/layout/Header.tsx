@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 
-import { Sparkles, User } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/shared/shadcn/components/ui/button";
@@ -9,9 +10,6 @@ import DefaultNav from "./DefaultNav";
 import MobileNav from "./MobileNav";
 
 function Header(): ReactElement {
-  // TODO: 認証状態に応じて変更する
-  const isAuthenticated = false;
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex min-h-16 items-center justify-between px-4 mx-auto">
@@ -31,30 +29,26 @@ function Header(): ReactElement {
           <DefaultNav />
         </div>
 
-        <div className="flex items-center gap-2">
-          {isAuthenticated ? (
-            <div className="hidden lg:flex w-6 md:w-10 h-6 md:h-10 rounded-full bg-black relative cursor-pointer">
-              <User className="size-6 absolute inset-0 m-auto text-white" />
-            </div>
-          ) : (
-            <div className="hidden lg:flex items-center gap-2">
-              <Link href="/auth/login">
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <User className="size-4" />
-                  ログイン
-                </Button>
-              </Link>
-              <Link href="/auth/register">
-                <Button size="sm" className="gap-2">
-                  新規登録
-                </Button>
-              </Link>
-            </div>
-          )}
+        <div className="items-center gap-2 hidden lg:flex">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button className="text-black border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors">
+                ログイン
+              </Button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer transition-colors shadow-sm">
+                新規登録
+              </Button>
+            </SignUpButton>
+          </SignedOut>
+        </div>
 
-          <div className="lg:hidden">
-            <MobileNav isAuthenticated={isAuthenticated} />
-          </div>
+        <div className="flex lg:hidden">
+          <MobileNav />
         </div>
       </div>
     </header>

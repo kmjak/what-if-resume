@@ -2,6 +2,7 @@
 
 import { ReactElement } from "react";
 
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,11 +12,7 @@ import { useMobileNav } from "@/shared/hooks/useMobileNav";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/shadcn/components/ui/button";
 
-type MobileNavProps = {
-  isAuthenticated: boolean;
-};
-
-function MobileNav({ isAuthenticated }: MobileNavProps): ReactElement {
+function MobileNav(): ReactElement {
   const { isOpen, handleClose, handleToggle } = useMobileNav();
   const pathname = usePathname();
 
@@ -55,29 +52,31 @@ function MobileNav({ isAuthenticated }: MobileNavProps): ReactElement {
                   </Link>
                 );
               })}
-
               <div className="my-4 border-t" />
-
-              {isAuthenticated ? (
-                <div className="flex flex-col gap-2">
-                  <Link href="/auth/profile" onClick={handleClose}>
-                    <Button variant="outline" className="w-full justify-start gap-3 h-12 text-base">
-                      プロフィール
-                    </Button>
-                  </Link>
+              <SignedIn>
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        userButtonAvatarBox: "w-9 h-9",
+                      },
+                    }}
+                  />
+                  <span className="text-sm font-medium">アカウント</span>
                 </div>
-              ) : (
+              </SignedIn>
+              <SignedOut>
                 <div className="flex flex-col gap-2">
-                  <Link href="/auth/login" onClick={handleClose}>
-                    <Button variant="outline" className="w-full justify-start gap-3 h-12 text-base">
+                  <SignInButton mode="modal">
+                    <Button variant="outline" className="w-full h-12 rounded-full">
                       ログイン
                     </Button>
-                  </Link>
-                  <Link href="/auth/register" onClick={handleClose}>
-                    <Button className="w-full justify-start gap-3 h-12 text-base">新規登録</Button>
-                  </Link>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <Button className="w-full h-12 rounded-full">新規登録</Button>
+                  </SignUpButton>
                 </div>
-              )}
+              </SignedOut>
             </nav>
           </div>
         </>

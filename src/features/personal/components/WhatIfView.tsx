@@ -40,7 +40,7 @@ function WhatIfView(): ReactElement {
   return (
     <div className="container mx-auto space-y-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">あなたの自分史</h1>
+        <h1 className="text-3xl font-bold mb-2">あなたの個人史</h1>
         <p className="text-gray-600">AIが分析したあなたのプロフィールと人生のストーリーです</p>
       </div>
 
